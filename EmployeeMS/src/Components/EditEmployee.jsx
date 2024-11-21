@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 const EditEmployee = () => {
@@ -13,6 +13,7 @@ const EditEmployee = () => {
     })
 
     const [category, SetCategory] = useState([])
+    const navigate = useNavigate()
 
     useEffect(() => {
 
@@ -34,6 +35,7 @@ const EditEmployee = () => {
                     email: result.data.Result[0].email,
                     address: result.data.Result[0].address,
                     salary: result.data.Result[0].salary,
+                    category_id: result.data.Result[0].category_id
                 })
             }).catch(err => console.log(err))
     }
@@ -44,7 +46,11 @@ const EditEmployee = () => {
         e.preventDefault()
         axios.put('http://localhost:3000/auth/edit_employee/' + id, employee)
         .then(result => {
-            console.log(result.data)
+            if(result.data.Status) {
+                navigate('/dashboard/employee')
+            } else{
+                alert(result.data.Error)
+            }
         }).catch(err => console.log(err))
     }
 
