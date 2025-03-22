@@ -1,4 +1,4 @@
-# Peoplehub - 미니 ems 시스템
+# PeopleHub - 미니 ems 시스템
 <img src="image.png" alt="Peoplehub - 미니 ems 시스템" width="300"/>
 
 
